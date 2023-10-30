@@ -62,7 +62,7 @@ def translate(request):
         elif target_lang in model3_lang_mapping:
             translated_text = translation_model3.translate_text(sentence, target_lang)
         else:
-            translated_text = "Unsupported target language"
+            translated_text = "Select a target language"
 
         return JsonResponse({'translated_text': translated_text})
 
