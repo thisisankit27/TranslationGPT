@@ -25,6 +25,7 @@ function selectChat(lang) {
                 break;
             // Add more cases for other languages if needed
         }
+        document.getElementById('comment').focus();
         targetLang = lang;
     }
 }
@@ -42,7 +43,6 @@ function speakText(text, lang) {
     utterance.lang = lang;
     speechSynthesis.speak(utterance);
 }
-
 
 function translateMe() {
     var inputSentence = document.getElementById("comment").value;
@@ -103,12 +103,19 @@ function displayMessage(className, className2, message) {
     messageContainer.appendChild(messageElement);
     chatMessagesContainer.appendChild(messageContainer);
 
+    scrollToBottom();
+
     messageTextElement.addEventListener('click', function () {
         if (className2 === 'receiver')
             speakText(message, targetLang);
         else
             speakText(message, 'en');
     });
+}
+
+function scrollToBottom() {
+    var conversation = document.getElementById('conversation');
+    conversation.scrollTop = conversation.scrollHeight;
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -156,6 +163,11 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             icon.classList.remove('fa-microphone');
             icon.classList.add('fa-microphone-slash');
+            document.getElementById('comment').focus();
         }
     }
+});
+
+window.addEventListener('DOMContentLoaded', (event) => {
+    document.getElementById('comment').focus();
 });
