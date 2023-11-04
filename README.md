@@ -26,7 +26,8 @@ Follow these steps to set up and run the project locally:
    ```
    or
    ```bash
-   mkvirtualenv venv
+   pip install virtualenvwrapper-win
+   mkvirtualenv translationEnv
    ```
 
    Activate the virtual environment:
@@ -38,7 +39,7 @@ Follow these steps to set up and run the project locally:
      ```
      or
      ```bash
-     workon venv
+     workon translationEnv
      ```
 
    - On macOS and Linux:
