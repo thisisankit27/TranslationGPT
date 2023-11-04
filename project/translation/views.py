@@ -30,21 +30,25 @@ class TranslationModel:
 
 # Create instances of the TranslationModel for each model you want to support
 
-model1_repo = 'google/mt5-small'
-model2_repo = 'google/mt5-small'
-model3_repo = 'google/mt5-small'
+model_repo = 'google/mt5-small'
 
 model1_path = "C:/Users/thisi/OneDrive/Desktop/Models/mt5_translation(en-hi).pt"
 model2_path = "C:/Users/thisi/OneDrive/Desktop/Models/mt5_translation(en-fr).pt"
 model3_path = "C:/Users/thisi/OneDrive/Desktop/Models/mt5_translation(bn-en).pt"
+model4_path = "C:/Users/thisi/OneDrive/Desktop/Models/mt5_translation(de-en).pt"
+model5_path = "C:/Users/thisi/OneDrive/Desktop/Models/mt5_translation(en-zh).pt"
 
 model1_lang_mapping = {'en': '<en>', 'hi': '<hi>'}
 model2_lang_mapping = {'en': '<en>', 'fr': '<fr>'}
 model3_lang_mapping = {'bn': '<bn>', 'en': '<en>'}
+model4_lang_mapping = {'de': '<de>', 'en': '<en>'}
+model5_lang_mapping = {'en': '<en>', 'zh': '<zh>'}
 
-translation_model1 = TranslationModel(model1_repo, model1_path, model1_lang_mapping)
-translation_model2 = TranslationModel(model2_repo, model2_path, model2_lang_mapping)
-translation_model3 = TranslationModel(model3_repo, model3_path, model3_lang_mapping)
+translation_model1 = TranslationModel(model_repo, model1_path, model1_lang_mapping)
+translation_model2 = TranslationModel(model_repo, model2_path, model2_lang_mapping)
+translation_model3 = TranslationModel(model_repo, model3_path, model3_lang_mapping)
+translation_model4 = TranslationModel(model_repo, model4_path, model4_lang_mapping)
+translation_model5 = TranslationModel(model_repo, model5_path, model5_lang_mapping)
 
 @csrf_exempt
 def translate(request):
@@ -61,6 +65,10 @@ def translate(request):
             translated_text = translation_model2.translate_text(sentence, target_lang)
         elif target_lang in model3_lang_mapping:
             translated_text = translation_model3.translate_text(sentence, target_lang)
+        elif target_lang in model4_lang_mapping:
+            translated_text = translation_model4.translate_text(sentence, target_lang)
+        elif target_lang in model5_lang_mapping:
+            translated_text = translation_model5.translate_text(sentence, target_lang)
         else:
             translated_text = "Select a target language"
 
