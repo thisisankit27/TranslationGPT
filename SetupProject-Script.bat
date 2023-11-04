@@ -22,6 +22,8 @@ cd project
 echo SECRET_KEY=hndh2b7847%%^BV%%^!^!)yb > .env
 
 :: Run the development server
+cd ..
+python manage.py migrate
 python manage.py runserver
 
 :: Additional pause to identify if the script exits immediately
