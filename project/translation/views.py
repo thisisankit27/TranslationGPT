@@ -19,13 +19,17 @@ class TranslationModel:
 
     def translate_text(self, input_text, target_lang):
         target_lang_token = self.lang_token_mapping.get(target_lang, '<en>')
+
         input_text = f'{target_lang_token} {input_text}'
         input_ids = self.tokenizer.encode(input_text, return_tensors='pt', max_length=1000, truncation=True)
         input_ids = input_ids.to(self.device)
+
         with torch.no_grad():
             output = self.model.generate(input_ids, num_beams=4, max_length=1000, no_repeat_ngram_size=2)
+
         translated_text = self.tokenizer.decode(output[0], skip_special_tokens=True)
         return translated_text
+
 
 
 # Create instances of the TranslationModel for each model you want to support
@@ -57,17 +61,18 @@ def translate(request):
     if request.method == 'POST':
         sentence = request.POST.get('sentence', '')
         target_lang = request.POST.get('target_lang', 'en')
+        source_lang = request.POST.get('source_lang', 'en')
         print(target_lang)
         # Choose the appropriate translation model based on your logic
-        if target_lang in model1_lang_mapping:
+        if target_lang in model1_lang_mapping and source_lang in model1_lang_mapping:
             translated_text = translation_model1.translate_text(sentence, target_lang)
-        elif target_lang in model2_lang_mapping:
+        elif target_lang in model2_lang_mapping and source_lang in model2_lang_mapping:
             translated_text = translation_model2.translate_text(sentence, target_lang)
-        elif target_lang in model3_lang_mapping:
+        elif target_lang in model3_lang_mapping and source_lang in model3_lang_mapping:
             translated_text = translation_model3.translate_text(sentence, target_lang)
-        elif target_lang in model4_lang_mapping:
+        elif target_lang in model4_lang_mapping and source_lang in model4_lang_mapping:
             translated_text = translation_model4.translate_text(sentence, target_lang)
-        elif target_lang in model5_lang_mapping:
+        elif target_lang in model5_lang_mapping and source_lang in model5_lang_mapping:
             translated_text = translation_model5.translate_text(sentence, target_lang)
         else:
             translated_text = "Select a target language"

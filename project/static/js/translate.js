@@ -1,4 +1,5 @@
 var targetLang = ''; // Global variable to store the target language
+var sourceLang = ''; // Global variable to store the target language
 
 function selectChat(lang) {
     // Remove 'active' class from all sideBar-body elements
@@ -33,7 +34,29 @@ function selectChat(lang) {
         }
         document.getElementById('comment').focus();
         targetLang = lang;
+        sourceLang = 'en';
     }
+}
+
+function swapLanguages() {
+    // Swap the values of sourceLang and targetLang
+    var tempLang = sourceLang;
+    sourceLang = targetLang;
+    targetLang = tempLang;
+
+    // Toggle the color of the language icon between blue and red
+    var icon = document.querySelector('.fa-language');
+    if (icon.style.color === 'blue') {
+        icon.style.color = 'red';
+    } else {
+        icon.style.color = 'blue';
+    }
+
+    // Update any elements or logic that depends on sourceLang and targetLang
+    // For example, you might want to update the UI to reflect the new source and target languages
+    // ...
+
+    document.getElementById('comment').focus();
 }
 
 function getCurrentTime() {
@@ -71,8 +94,8 @@ function translateMe() {
     };
 
     // Send the input sentence directly as the data
-    var encodedData = 'sentence=' + encodeURIComponent(inputSentence) + '&target_lang=' + encodeURIComponent(targetLang);
 
+    var encodedData = 'sentence=' + encodeURIComponent(inputSentence) + '&source_lang=' + encodeURIComponent(sourceLang) + '&target_lang=' + encodeURIComponent(targetLang);
     xhr.send(encodedData);
 }
 
@@ -166,9 +189,11 @@ document.addEventListener('DOMContentLoaded', function () {
         if (isRecording) {
             icon.classList.remove('fa-microphone-slash');
             icon.classList.add('fa-microphone');
+            icon.style.color = 'green';
         } else {
             icon.classList.remove('fa-microphone');
             icon.classList.add('fa-microphone-slash');
+            icon.style.color = 'red';
             document.getElementById('comment').focus();
         }
     }
