@@ -23,6 +23,12 @@ function selectChat(lang) {
             case 'fr':
                 headingAvatar.src = staticUrl + 'images/french.jpg';
                 break;
+            case 'de':
+                headingAvatar.src = staticUrl + 'images/german.png';
+                break;
+            case 'zh':
+                headingAvatar.src = staticUrl + 'images/chinese.jpg';
+                break;
             // Add more cases for other languages if needed
         }
         document.getElementById('comment').focus();
