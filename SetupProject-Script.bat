@@ -22,10 +22,7 @@ cd project
 echo SECRET_KEY=hndh2b7847%%^BV%%^!^!)yb > .env
 
 :: Use PowerShell to show a folder selection dialog
-for /f "delims=" %%I in ('powershell -ExecutionPolicy Bypass -File SelectFolder.ps1') do set "MODELS_PATH=%%I"
-
-:: Replace backslashes with forward slashes in MODELS_PATH
-set "MODELS_PATH=%MODELS_PATH:\=/%"
+for /f "delims=" %%I in ('powershell -ExecutionPolicy Bypass -File "%~dp0SelectFolder.ps1"') do set "MODELS_PATH=%%I"
 
 :: Set up Models directory PATH
 cd ..
