@@ -46,12 +46,19 @@ class TranslationModel:
 # Create instances of the TranslationModel for each model you want to support
 model_repo = 'google/mt5-small'
 
-model1_path = os.path.join(env('MODELS_PATH'), 'mt5_translation(en-hi).pt')
-model2_path = os.path.join(env('MODELS_PATH'), 'mt5_translation(en-fr).pt')
-model3_path = os.path.join(env('MODELS_PATH'), 'mt5_translation(bn-en).pt')
-model4_path = os.path.join(env('MODELS_PATH'), 'mt5_translation(de-en).pt')
-model5_path = os.path.join(env('MODELS_PATH'), 'mt5_translation(en-zh).pt')
+path_of_model_folder = os.path.join(env('MODELS_PATH'))
+path_of_model_folder = path_of_model_folder.rstrip()
 
+model1_path = path_of_model_folder.replace(
+    '\\', '/') + '/mt5_translation(en-hi).pt'
+model2_path = path_of_model_folder.replace(
+    '\\', '/') + '/mt5_translation(en-fr).pt'
+model3_path = path_of_model_folder.replace(
+    '\\', '/') + '/mt5_translation(bn-en).pt'
+model4_path = path_of_model_folder.replace(
+    '\\', '/') + '/mt5_translation(de-en).pt'
+model5_path = path_of_model_folder.replace(
+    '\\', '/') + '/mt5_translation(en-zh).pt'
 model1_lang_mapping = {'en': '<en>', 'hi': '<hi>'}
 model2_lang_mapping = {'en': '<en>', 'fr': '<fr>'}
 model3_lang_mapping = {'bn': '<bn>', 'en': '<en>'}

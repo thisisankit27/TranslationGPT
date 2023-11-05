@@ -29,6 +29,7 @@ cd ..
 cd translation
 echo MODELS_PATH=%MODELS_PATH% > .env
 cd ..
+python manage.py migrate
 cd ..
 
 @REM :: Run the development server
@@ -40,7 +41,13 @@ cd ..
 
 :: Create Run.bat
 echo @echo off > Run.bat
+echo call translationEnv\Scripts\activate >> Run.bat
+echo if errorlevel 1 ( >> Run.bat
+echo     echo Failed to activate the virtual environment. >> Run.bat
+echo     exit /b 1 >> Run.bat
+echo ) >> Run.bat
+echo cd project >> Run.bat
 echo :: Run the development server >> Run.bat
 echo python manage.py runserver >> Run.bat
-echo :: Additional pause to identify if the script exits immediately >> Run.bat
+echo cd .. >> Run.bat
 echo pause >> Run.bat
