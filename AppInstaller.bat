@@ -29,6 +29,7 @@ cd ..
 cd translation
 echo MODELS_PATH=%MODELS_PATH% > .env
 cd ..
+cd ..
 
 @REM :: Run the development server
 @REM python manage.py migrate
