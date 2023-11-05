@@ -8,7 +8,7 @@ flag_file = "flag.txt"
 
 
 def main():
-    if not os.path.exists(flag_file):
+    if sys.argv[1] == "runserver" and not os.path.exists(flag_file):
         with open(flag_file, 'w') as f:
             webbrowser.open('http://127.0.0.1:8000/translate/')
             f.write("visited")
