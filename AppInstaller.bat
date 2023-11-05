@@ -30,9 +30,16 @@ cd translation
 echo MODELS_PATH=%MODELS_PATH% > .env
 cd ..
 
-:: Run the development server
-python manage.py migrate
-python manage.py runserver
+@REM :: Run the development server
+@REM python manage.py migrate
+@REM python manage.py runserver
 
-:: Additional pause to identify if the script exits immediately
-pause
+@REM :: Additional pause to identify if the script exits immediately
+@REM pause
+
+:: Create Run.bat
+echo @echo off > Run.bat
+echo :: Run the development server >> Run.bat
+echo python manage.py runserver >> Run.bat
+echo :: Additional pause to identify if the script exits immediately >> Run.bat
+echo pause >> Run.bat
