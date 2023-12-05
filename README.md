@@ -1,4 +1,4 @@
-# TranslationGPT
+# TranslationTMT
 
 ## Project Overview
 
