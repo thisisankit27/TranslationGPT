@@ -1,5 +1,10 @@
 # TranslationTMT
 
+## Project Working
+
+https://github.com/thisisankit27/TranslationTMT/assets/69184999/60d7e782-3e9c-4406-9878-bb3f7a907486
+
+
 ## Project Overview
 
 This is a Django project that utilizes the Django framework (v4.2.6) along with other dependencies such as `django_environ` (v0.11.2), `torch` (v2.1.0), and `transformers` (v4.34.1).
